@@ -14,6 +14,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Modules\CustomModule\**" />
+    <Content Remove="Modules\CustomModule\**" />
+    <EmbeddedResource Remove="Modules\CustomModule\**" />
+    <None Remove="Modules\CustomModule\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Modules\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
 
@@ -21,6 +29,7 @@
     <ProjectReference Include="..\OrchardCore\OrchardCore.Hosting.Console\OrchardCore.Hosting.Console.csproj" />
     <ProjectReference Include="..\OrchardCore\OrchardCore.Logging.NLog\OrchardCore.Logging.NLog.csproj" />
     <ProjectReference Include="..\OrchardCore\OrchardCore.Application.Cms.Targets\OrchardCore.Application.Cms.Targets.csproj" />
+    <ProjectReference Include="Modules\CustomModule\CustomModule.csproj" />
   </ItemGroup>
 
   <ItemGroup>
