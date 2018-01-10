@@ -1,0 +1,15 @@
+@using CustomModule.Models
+
+@model ProductPart
+
+<fieldset class="form-group" asp-validation-class-for="Sku">
+    <label asp-for="Sku">@T["Sku"] <span asp-validation-for="Sku"></span></label>
+    <input asp-for="Sku" class="form-control content-preview-text" autofocus="autofocus" />
+    <span class="hint">@T["Enter the Stock Keeping Unit"]</span>
+</fieldset>
+
+<fieldset class="form-group" asp-validation-class-for="UnitPrice">
+    <label asp-for="UnitPrice">@T["Unit Price"] <span asp-validation-for="UnitPrice"></span></label>
+    <input asp-for="UnitPrice" class="form-control content-preview-text" autofocus="autofocus" />
+    <span class="hint">@T["Enter the sales price per unit"]</span>
+</fieldset>
