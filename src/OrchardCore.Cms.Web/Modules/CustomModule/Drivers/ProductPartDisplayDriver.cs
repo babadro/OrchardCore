@@ -12,7 +12,15 @@ namespace CustomModule.Drivers
 
         public override IDisplayResult Edit(ProductPart part)
         {
-            return Shape("ProductPart_Edit", part).Location("Content:1");
+            return Shape<ProductPart>("ProductPart_Edit", model =>
+            {
+                model.Sku = part.Sku;
+                model.UnitPrice = part.UnitPrice;
+
+                return Task.CompletedTask;
+            });
+
+            //return Shape("ProductPart_Edit", part).Location("Content:1");
         }
 
         public override async Task<IDisplayResult> UpdateAsync(ProductPart model, IUpdateModel updater)
