@@ -9,6 +9,7 @@ namespace CustomModule.Handlers
 {
     public class ProductPartHandler : ContentPartHandler<ProductPart>
     {
+        /*
         public override void GetContentItemAspect(ContentItemAspectContext context, ProductPart part)
         {
             context.For<ContentItemMetadata>(ContentItemMetadata =>
@@ -16,5 +17,14 @@ namespace CustomModule.Handlers
                 ContentItemMetadata.DisplayText = part.Sku;
             });
         }
+        */
+
+        public override void Updated(UpdateContentContext context, ProductPart part)
+        {
+            
+            var temp = 1;
+            var temp2 = 2;
+        }
+
     }
 }

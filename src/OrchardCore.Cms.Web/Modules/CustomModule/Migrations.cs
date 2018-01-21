@@ -1,4 +1,4 @@
-using System;
+using CustomModule.Indexes;
 using CustomModule.Models;
 using OrchardCore.ContentManagement.Metadata;
 using OrchardCore.ContentManagement.Metadata.Settings;
@@ -17,28 +17,20 @@ namespace CustomModule
 
         public int Create()
         {
-            SchemaBuilder.CreateTable(nameof(ProductPart), table => table
-                .Column<int>("Id", col => col.PrimaryKey().Identity())
+            _contentDefinitionManager.AlterPartDefinition("ProductPart", part => part
+                .Attachable());
+            
+            SchemaBuilder.CreateMapIndexTable(nameof(ProductPartIndex), table => table
+                .Column<string>("ContentItemId", c => c.WithLength(26))
                 .Column<decimal>(nameof(ProductPart.UnitPrice))
                 .Column<string>(nameof(ProductPart.Sku), column => column.WithLength(50))
             );
 
-
-            //SchemaBuilder.AlterTable(nameof(IndexingTask), table => table
-            //    .CreateIndex("IDX_IndexingTask_ContentItemId", "ContentItemId")
-            //);
-
+            SchemaBuilder.AlterTable(nameof(ProductPartIndex), table => table
+                .CreateIndex("IDX_ProductPartIndex_ContentItemId", "ContentItemId")
+            );
 
             return 1;
-        }
-
-        public int UpdateFrom1()
-        {
-            // Create (or alter) a part called "ProductPart" and configure it to be "attachable".
-            _contentDefinitionManager.AlterPartDefinition("ProductPart", part => part
-                .Attachable());
-
-            return 2;
         }
     }
 }
